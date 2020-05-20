@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class CreateBoxesTable extends Migration
 {
@@ -18,6 +19,8 @@ class CreateBoxesTable extends Migration
             $table->string('name',120);
             $table->timestamps();
         });
+
+        DB::update("ALTER TABLE boxes AUTO_INCREMENT = 1;");
     }
 
     /**
