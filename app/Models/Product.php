@@ -10,15 +10,24 @@ class Product extends Model
 {
     protected $fillable = ['idProduct','code', 'name'];
 
+    /**
+     * Insere um novo produto no banco de dados
+     */
     static function createProduct($request)
     {
         return self::create($request->all());
     }
 
+    /**
+     * Retorna a lista de produtos previamente cadastrados
+     */
     static function getProduct(){
         return self::select('code','name')->get();
     }
 
+    /**
+     *  Atualiza um produto previamente cadastrado no banco de dados
+     */
     static function updateProduct($request, $id)
     {
         try {

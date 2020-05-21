@@ -12,33 +12,28 @@ class BoxController extends Controller
     /**
      * Caixas cadastradas
      *
-     * Retorna a lista de caixas cadastradas no sistema
-     *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return BoxResource::collection(Box::select('idBox as id','name')->paginate(25));
+        return BoxResource::collection(Box::getBox());
     }
 
     /**
      * Adiciona caixa
-     *
-     * Insere uma nova caixa no banco de dados
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $book = Box::create($request->all());
-        $response = new BoxResource($book);
+        $response = new BoxResource(Box::createBox($request));
         return response()->json(['id' => $response->id], 201);
     }
 
 
     /**
-     * Update the specified resource in storage.
+     * Atualiza caixa.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -46,9 +41,8 @@ class BoxController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $box = Box::where(['idBox'=>$id]);
-        $box->update($request->only(['name']));
-        return response()->json(['message' => "Caixa atualizado com sucesso"], 200);
+        Box::updateBox($request, $id);
+        return response()->json(['message' => "Produto atualizado com sucesso"], 200);
     }
 
 
