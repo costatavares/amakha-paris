@@ -19,3 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('box', 'BoxController');
+Route::apiResource('product', 'ProductController');
+Route::name('orderBox.boxesForOrder')->post('order/boxes', 'BoxController@boxesForOrder');

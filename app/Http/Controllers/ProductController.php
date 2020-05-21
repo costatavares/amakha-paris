@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Resources\BoxResource;
-use App\Models\Box;
+use App\Http\Resources\ProductResource;
+use App\Models\Product;
 
-
-class BoxController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +15,7 @@ class BoxController extends Controller
      */
     public function index()
     {
-        return BoxResource::collection(Box::select('idBox as id','name')->paginate(25));
+        return ProductResource::collection(Product::select('code','name')->paginate(25));
     }
 
     /**
@@ -27,9 +26,7 @@ class BoxController extends Controller
      */
     public function store(Request $request)
     {
-        $book = Box::create($request->all());
-        $response = new BoxResource($book);
-        return response()->json(['id' => $response->id], 201);
+        //
     }
 
     /**
@@ -52,9 +49,7 @@ class BoxController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $box = Box::where(['idBox'=>$id]);
-        $box->update($request->only(['name']));
-        return response()->json(['message' => "Caixa atualizado com sucesso"], 200);
+        //
     }
 
     /**
@@ -67,17 +62,4 @@ class BoxController extends Controller
     {
         //
     }
-
-    /**
-     * Lista de caixas para pedido
-     * Lista de caixas necessárias para enviar todos os produtos do pedido
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function boxesForOrder(Request $request)
-    {
-
-    }
-
 }

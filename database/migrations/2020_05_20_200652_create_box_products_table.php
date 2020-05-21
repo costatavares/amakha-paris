@@ -16,6 +16,7 @@ class CreateBoxProductsTable extends Migration
         Schema::create('box_products', function (Blueprint $table) {
             $table->integer('idProduct');
             $table->integer('idBox');
+            $table->integer('howMuchFit');
             $table->timestamps();
             $table->index('idProduct');
             $table->index('idBox');
