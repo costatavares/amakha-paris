@@ -8,40 +8,42 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
+    public function __construct(Product $product)
+    {
+        $this->product = $product;
+    }
+
     /**
-     * Display a listing of the resource.
+     * Produtos cadastrados
+     *
+     * Retorna a lista de produtos previamente cadastrados
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return ProductResource::collection(Product::select('code','name')->paginate(25));
+        return ProductResource::collection(Product::getProduct());
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Adiciona produto
+     *
+     * Insere um novo produto no banco de dados
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $response = new ProductResource(Product::createProduct($request));
+        return response()->json(['id' => $response->id], 201);
     }
 
+
     /**
-     * Display the specified resource.
+     * Atualiza produto
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
+     * Atualiza um produto previamente cadastrado no banco de dados
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -49,17 +51,10 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // $product = $this->product->where(['idProduct'=>$id]);
+        // $product->update($request->only(['name']));
+        Product::updateProduct($request, $id);
+        return response()->json(['message' => "Produto atualizado com sucesso"], 200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

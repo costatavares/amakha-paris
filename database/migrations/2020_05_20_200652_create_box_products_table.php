@@ -13,13 +13,12 @@ class CreateBoxProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('box_products', function (Blueprint $table) {
-            $table->integer('idProduct');
-            $table->integer('idBox');
+        Schema::create('box_product', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('idProduct')->unsigned(false)->index();
+            $table->integer('idBox')->unsigned(false)->index();
             $table->integer('howMuchFit');
             $table->timestamps();
-            $table->index('idProduct');
-            $table->index('idBox');
             $table->foreign('idProduct')->references('idProduct')->on('products')->onDelete('cascade');
             $table->foreign('idBox')->references('idBox')->on('boxes')->onDelete('cascade');
         });

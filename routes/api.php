@@ -14,10 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
-Route::apiResource('box', 'BoxController');
-Route::apiResource('product', 'ProductController');
-Route::name('orderBox.boxesForOrder')->post('order/boxes', 'BoxController@boxesForOrder');
+
+Route::apiResources(
+    [
+        'box' => 'BoxController',
+        'product' => 'ProductController',
+        'product.box'=>'ProductBoxController'
+    ],
+    [
+        'only'=>[ 'index','store', 'update']
+    ]
+);
+
+
+Route::name('order.box.boxForOrder')->post('order/boxes', 'BoxController@boxesForOrder');

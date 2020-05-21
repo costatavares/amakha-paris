@@ -10,7 +10,9 @@ use App\Models\Box;
 class BoxController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Caixas cadastradas
+     *
+     * Retorna a lista de caixas cadastradas no sistema
      *
      * @return \Illuminate\Http\Response
      */
@@ -20,7 +22,9 @@ class BoxController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Adiciona caixa
+     *
+     * Insere uma nova caixa no banco de dados
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -32,16 +36,6 @@ class BoxController extends Controller
         return response()->json(['id' => $response->id], 201);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -57,19 +51,10 @@ class BoxController extends Controller
         return response()->json(['message' => "Caixa atualizado com sucesso"], 200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 
     /**
      * Lista de caixas para pedido
+     *
      * Lista de caixas necessárias para enviar todos os produtos do pedido
      *
      * @param  \Illuminate\Http\Request  $request
