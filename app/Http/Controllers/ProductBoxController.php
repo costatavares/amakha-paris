@@ -4,11 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\Box;
 use App\Models\Product;
 use App\Models\BoxProduct;
-
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 use App\Http\Resources\ProductBoxResource;
 
@@ -34,7 +31,6 @@ class ProductBoxController extends Controller
     {
         Product::createProductBox($idProduct,$request);
         return response()->json(['message' => "Dados atualizados com sucesso"], 200);
-
     }
 
 }
