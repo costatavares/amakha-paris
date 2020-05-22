@@ -13,7 +13,7 @@ use App\Http\Resources\ProductBoxResource;
 class ProductBoxController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Lista de caixas para o produto
      *
      * @return \Illuminate\Http\Response
      */

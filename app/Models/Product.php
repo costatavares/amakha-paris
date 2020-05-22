@@ -37,6 +37,9 @@ class Product extends Model
         }
     }
 
+    /**
+     * Atualiza um produto previamente cadastrado no banco de dados
+     */
     static function createProductBox($idProduct,$request){
         try {
             $product = self::where('idProduct',$idProduct)->firstOrFail();

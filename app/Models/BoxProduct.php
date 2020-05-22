@@ -11,6 +11,9 @@ class BoxProduct extends Model
 
     protected $fillable = ['id','idProduct', 'idBox','howMuchFit'];
 
+    /**
+     * Retorna a lista de caixas para esse produto contendo a quantidade de produtos que cabem em cada caixa
+     */
     static function getProductBoxes($idProduct)
     {
         $boxProduct = self::where('idProduct',$idProduct)->get(['idBox','howMuchFit']);
