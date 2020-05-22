@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Product;
 use App\Models\BoxProduct;
+use App\Http\Requests\ProductBox\ProductBoxFormRequest as ProductBoxRequest;
 
 use App\Http\Resources\ProductBoxResource;
 
@@ -22,12 +23,12 @@ class ProductBoxController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Quantidade de produtos por caixa.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,$idProduct)
+    public function store(ProductBoxRequest $request,$idProduct)
     {
         Product::createProductBox($idProduct,$request);
         return response()->json(['message' => "Dados atualizados com sucesso"], 200);

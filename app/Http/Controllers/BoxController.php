@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Resources\BoxResource;
-use App\Models\Box;
+use App\Http\Requests\Box\BoxFormRequest as BoxRequest;
 
+use App\Models\Box;
+use App\Http\Resources\BoxResource;
 
 class BoxController extends Controller
 {
@@ -25,7 +26,7 @@ class BoxController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BoxRequest $request)
     {
         $response = new BoxResource(Box::createBox($request));
         return response()->json(['id' => $response->id], 201);
@@ -39,7 +40,7 @@ class BoxController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BoxRequest $request, $id)
     {
         Box::updateBox($request, $id);
         return response()->json(['message' => "Produto atualizado com sucesso"], 200);
